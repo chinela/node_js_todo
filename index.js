@@ -9,6 +9,9 @@ const passport = require('passport');
 dotenv.config();
 const app = express();
 
+// Passport config
+require('./config/passport')(passport);
+
 mongoose.connect('mongodb://localhost/todo_app', {useNewUrlParser: true,  useUnifiedTopology: true});
 mongoose.connection.once('open', () => {
     

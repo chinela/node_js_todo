@@ -6,5 +6,6 @@ router.get('/', MainController.index)
 router.get('/register', MainController.register)
 router.get('/login', MainController.login)
 router.post('/register', MainController.postRegister)
+router.post('/login', MainController.postLogin)
 
 module.exports = router;

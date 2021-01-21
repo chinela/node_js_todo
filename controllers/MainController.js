@@ -1,5 +1,6 @@
 const UserModel = require('../models/User');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const passport  = require('passport')
 
 const MainController = {
     index(req, res) {
@@ -52,11 +53,27 @@ const MainController = {
                             })
                         })
                     }
-                }).catch((err) => {
-                    
-                });
+                })
         }
-    }    
+    },
+    postLogin(req, res, next) {
+        const {email, password} = req.body;
+        const errors = [];
+
+        if(!email || !password) {
+            errors.push({message: 'All fields are required'})
+        }
+
+        if(errors.length > 0) {
+            res.render('auth/login', {errors, email, title: 'Login to account'});
+        } else {
+            passport.authenticate('local', {
+                successRedirect: '/dashboard',
+                failureRedirect: '/login',
+                failureFlash: true
+            })(req, res, next);
+        }
+    }
 }
 
 module.exports = MainController;
