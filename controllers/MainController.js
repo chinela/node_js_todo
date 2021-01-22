@@ -73,6 +73,11 @@ const MainController = {
                 failureFlash: true
             })(req, res, next);
         }
+    },
+    logout(req, res) {
+        req.logOut();
+        req.flash('success_msg', 'Logged out successfully');
+        res.redirect('/login')
     }
 }
 

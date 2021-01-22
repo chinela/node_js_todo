@@ -3,10 +3,10 @@ const Schema = mongoose.Schema
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const ProfileSchema = Schema({
-    first_name: String,
-    last_name: String,
-    phone_number: String,
+    name: String,
+    phone: String,
     id: ObjectId,
+    user_id: String,
     user: {type: ObjectId, ref: 'User'}
 })
 
